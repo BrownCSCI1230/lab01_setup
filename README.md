@@ -193,3 +193,37 @@ std::cout << TimesTwo(std::string{ "abc" }) << std::endl;
 You should see `246`, `6.28` and `abcabc` when you run the program.
 
 ## Create Your Own Types
+
+Similar to how we create custom types in other languages, we can combine existing types to make a data structure, and bundle it with dedicated functions to create new types in C++. Custom types are also known as _classes_ in many languages including C++. We can use the keyword `struct` or `class` to create custom types, `struct`s and `class`es are almost the exact same thing in C++, with the only difference being that `struct`s have public member access by default and `class`es have private access by default. We'll use `struct` to refer to both `struct`s and `class`es from here. The basic form of a `struct` is shown as follows.
+
+```cpp
+struct Rectangle {
+    double Length; // data member, also known as a field
+    double Width = 1; // field can have a default value
+    // fields must be explicitly typed, you cannot use type deduction here
+
+    // member function, also known as a method
+    auto CalculateArea()->double {
+        return Length * Width;
+    }
+};
+```
+
+and here's how we can use the `Rectangle` type that we just created!
+
+```cpp
+// create an instance of Rectangle
+auto x = Rectangle{ .Length = 2, .Width = 4 }; 
+
+// field names can be omitted
+// in such case the values in the brackets 
+// will be assigned to each field sequentially 
+auto y = Rectangle{ 4, 3 }; // equivalent to Rectangle{ .Length = 4, .Width = 3 }
+
+// equivalent to Rectangle{ .Length = 5, .Width = 1 } because of the default value
+auto z = Rectangle{ 5 };
+
+// member access
+x.Length = 4;
+auto NewArea = x.CalculateArea(); // NewArea == 16
+```
