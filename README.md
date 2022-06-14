@@ -248,3 +248,11 @@ Let's add more behaviors to our `Rectangle` type and enhance its capabilities!
 You should see `30` when you run the program.
 
 #### ***Task 5:***
+
+Now that we've seen what we can do with `Rectangle`, are you ready to create a new type from ground zero?
+
+- Create a `Circle` type using `struct`.
+- `Circle` should contain a data member `Radius`, and two member functions `CalculateArea` and `CalculatePerimeter`.
+- After completing your `Circle` type, create a few instances of `Circle` in your `main` function, and call their member function.
+
+See if your `Circle` instances exhibit the expected behaviors when you run the program.
