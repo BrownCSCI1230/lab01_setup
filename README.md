@@ -141,3 +141,24 @@ auto PlusOne(auto x) {
 auto a = PlusOne(123); // a == 124
 auto b = PlusOne(3.14); // b == 4.14
 ```
+
+There are another function-like entities in C++ called _lambdas_. We'll not explain it in detail since functional programming is outside the scope of this lab. However, we encourage you to play with it and ask questions either in TA hours or on Ed. You will likely need to use lambdas for certain extra credit features such as multithreading in your future assignments. Below shows you a toy example to get started with lambdas.
+
+```cpp
+auto Plus(auto Increment) {
+    return [=](auto x) {
+        return x + Increment;
+    };
+}
+
+auto Apply(auto Operation, auto x) {
+    return Operation(x);
+}
+
+auto x = Apply(Plus(20), 22); // x == 42
+auto y = Apply(Plus(-1.1), 4.24); // y == 3.14
+```
+
+You can find more information about lambdas [here](https://en.cppreference.com/w/cpp/language/lambda).
+
+#### ***Task 2:***
