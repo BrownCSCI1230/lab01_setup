@@ -194,7 +194,7 @@ You should see `246`, `6.28` and `abcabc` when you run the program.
 
 ## Create Your Own Types
 
-Similar to how we create custom types in other languages, we can combine existing types to make a data structure, and bundle it with dedicated functions to create new types in C++. Custom types are also known as _classes_ in many languages including C++. We can use the keyword `struct` or `class` to create custom types, `struct`s and `class`es are almost the exact same thing in C++, with the only difference being that `struct`s have public member access by default and `class`es have private access by default. We'll use `struct` to refer to both `struct`s and `class`es from here. The basic form of a `struct` is shown as follows.
+Similar to how we create custom types in other languages, we can combine existing types to make a data structure, and bundle it with dedicated functions to create new types in C++. Custom types are also known as _classes_ in many languages including C++. We can use the keyword `struct` or `class` to create custom types, `struct`s and `class`es are almost the exact same thing in C++, with the only difference being that `struct`s have public member access by default and `class`es have private access by default. We'll use `struct` to refer to both `struct`s and `class`es from here. The basic form of a `struct` is shown as follows
 
 ```cpp
 struct Rectangle {
@@ -222,7 +222,7 @@ and here's how we can use the `Rectangle` type that we just created!
 auto x = Rectangle{ .Length = 2, .Width = 4 }; 
 
 // field names can be omitted
-// in such case the values in the brackets 
+// in such case values in the brackets 
 // will be assigned to each field sequentially 
 auto y = Rectangle{ 4, 3 }; // equivalent to Rectangle{ .Length = 4, .Width = 3 }
 
@@ -256,3 +256,36 @@ Now that we've seen what we can do with `Rectangle`, are you ready to create a n
 - After completing your `Circle` type, create a few instances of `Circle` in your `main` function, and call their member function.
 
 See if your `Circle` instances exhibit the expected behaviors when you run the program.
+
+Oof! Look what we've achieved! You might not believe it but I assure you that we've learned enough to do some non-trivial things in C++. If you had previous experience in object oriented programming, you probably know that there's something called _polymorphism_ which allows us to deal with different subtypes in the same way, as long as they're derived from the same supertype (a.k.a base type). This however requires us to define an interface (the supertype), and implement the interface for all related types. Sometimes it's hard to reason our program this way because more often, we understand things bottom-up rather than top-down. What it means is that instead of defining an interface first, and then implementing the interface for various concrete type, we start from simple concrete types without worrying about what kind of interfaces it satisfies, then we notice that some types _happen_ _to_ exhibit similar behaviors which allow us to process them uniformly. Indeed, this is the case for our `Rectangle` and `Circle`, as they come with the same member functions `CalculateArea` and `CalculatePerimeter`.
+
+But we haven't declared a common interface for `Rectangle` and `Circle`! Can we still write something to deal with them uniformly in C++? And more importantly, have we learned the necessary tool to do that? The answer is yes, and yes we have. Remember the generic functions we learned in the previous section? It has the magic property of allowing us to do _anything_ with the `auto` parameters. So all we have to do is to pass `Rectangle` and `Circle` instances to a generic parameter.
+<details><summary>Nerd talk for people who have taken CSCI1730</summary>
+    The reason behind this magic is that C++ templates are <a href="https://en.wikipedia.org/wiki/Structural_type_system">structurally typed</a>, and they do not enforce <a href="https://en.wikipedia.org/wiki/Parametricity">parametricity</a>.
+</details>
+
+#### ***Task 6:***
+
+- Navigate to the empty function `PrintShape`
+
+```cpp
+auto PrintShape(auto Shape)->void {
+    // Your code here
+}
+```
+
+- Complete the definition, so when you pass in either a `Rectangle` object or a `Circle` object, it prints
+
+```cpp
+Area: /* area of the shape */
+Perimeter: /* perimeter of the shape */
+```
+
+- Call `PrintShape` in your `main` function with different `Rectangle` and `Circle` objects.
+
+See if `PrintShape` exhibits the expected polymorphic behavior.
+<details><summary>Nerd talk 2 for people who have taken CSCI1730</summary>
+    Generic functions like PrintShape are technically known as parametric polymorphism, which is a universal quantification over types. The classic OOP polymorphism, technically known as subtype polymorphism, is an existential quantification over types. They both correspond to second order logic and in many cases, one may replace another.
+</details>
+
+## Containers and Strings
