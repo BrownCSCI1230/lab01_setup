@@ -165,7 +165,7 @@ You've probably noticed that type deduction is very powerful in C++, pushing it 
 <details><summary>Evil don't click</summary>
     And crazy compilation errors or even <a href="https://godbolt.org/z/8ozn45cMs">compiler crash</a> if your code is buggy in a certain way.
 </details>
-You should be careful to strike a balance between explicit type declaration and type deduction to maximize your code readability. The balance would likely be different for different people, however, as a rule of thumb, we recommend to use type deduction for local variables in the function body, and explicitly declare the types in the function signature, unless, of course, when your function is generic and you have to use `auto` for your generic parameters and omit the return type if it depends on the generic parameters.
+You should be careful to strike a balance between explicit type declaration and type deduction to maximize your code readability. The balance would likely be different for everybody, however, as a rule of thumb, we recommend to use type deduction for local variables in the function body, and explicitly declare the types in the function signature, unless, of course, when your function is generic and you have to use `auto` for your generic parameters and omit the return type if it depends on the generic parameters.
 
 #### ***Task 2:***
 
