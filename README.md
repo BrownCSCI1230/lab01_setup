@@ -93,12 +93,48 @@ int x = 42;
 double y = 3.14;
 ```
 
-or use `auto` to tell the compiler to deduce the type for us from the initialization. This could be useful if the type name is very long or if we know roughly about what something is, but we're not sure about the exact type.
+or use `auto` to tell the compiler to deduce the type for us from the initialization. This could be useful if the type name is very long or if we know roughly about what something is, but we're not sure about its exact type.
 
 ```cpp
 auto z = 2.71; // type of z deduced as double
 
-// I'm not exactly sure about the type of a string literal.
+// I'm not exactly sure about the type of a string literal
 // but I can ask the compiler to deduce it for me using auto
 auto w = "random string abcd";
+```
+
+The same rules also apply to functions, the basic form of a function requires us to declare its return type, and the type for each parameter.
+
+```cpp
+auto PlusOne(int x)->int {
+    return x + 1;
+}
+```
+
+The return type after `->` can be omitted, in such case the compiler will deduce the return type from the return statement in the function body. You may create multiple functions with the same name and this allows you to do something called overloading, which you might have heard from languages like Java.
+
+```cpp
+auto PlusOne(int x)->int {
+    return x + 1;
+}
+
+// overloading PlusOne
+auto PlusOne(double x) { // return type will be deduced
+    return x + 1; // return type deduced as double
+}
+
+auto a = PlusOne(123);  // calls PlusOne<int>
+auto b = PlusOne(3.14); // calls PlusOne<double>
+```
+
+Now, we can restructure the example above a little bit better if we make `PlusOne` generic. This is easy to do in C++, we simply change the type of the corresponding parameters to `auto`, meaning they could be anything.
+
+```cpp
+// generic PlusOne
+auto PlusOne(auto x) {
+    return x + 1;
+}
+
+auto a = PlusOne(123); // a == 124
+auto b = PlusOne(3.14); // b == 4.14
 ```
