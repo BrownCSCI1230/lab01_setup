@@ -206,6 +206,12 @@ struct Rectangle {
     auto CalculateArea()->double {
         return Length * Width;
     }
+
+    // member function that modifies the state of an object
+    auto MakeItSquare(double SideLength)->void {
+        Length = SideLength;
+        Width = SideLength;
+    }
 };
 ```
 
@@ -224,6 +230,21 @@ auto y = Rectangle{ 4, 3 }; // equivalent to Rectangle{ .Length = 4, .Width = 3 
 auto z = Rectangle{ 5 };
 
 // member access
+auto OldLength = x.Length;
 x.Length = 4;
+
+// call member functions
 auto NewArea = x.CalculateArea(); // NewArea == 16
+x.MakeItSquare(OldLength); // now Length = Width = 2 for x
 ```
+
+#### ***Task 4:***
+
+Let's add more behaviors to our `Rectangle` type and enhance its capabilities!
+
+- Add a member function `CalculatePerimeter` to `Rectangle`.
+- Add `std::cout << Rectangle{ 7, 8 }.CalculatePerimeter() << std::endl;` to your `main` function.
+
+You should see `30` when you run the program.
+
+#### ***Task 5:***
