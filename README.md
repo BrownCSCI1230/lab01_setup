@@ -161,6 +161,12 @@ auto y = Apply(Plus(-1.1), 4.24); // y == 3.14
 
 You can find more information about lambdas [here](https://en.cppreference.com/w/cpp/language/lambda).
 
+You've probably noticed that type deduction is very powerful in C++, pushing it to the extreme could make your coding experience largely resemble working with an _untyped_ language like Python or JavaScript. However, overusing it has a negative impact on the readability and maintainability of your code.
+<details><summary>Evil don't click</summary>
+    And crazy compilation errors or even <a href="https://godbolt.org/z/8ozn45cMs">compiler crash</a> if your code is buggy in a certain way.
+</details>
+You should be careful to strike a balance between explicit type declaration and type deduction to maximize your code readability. The balance would likely be different for different people, however, as a rule of thumb, we recommend to use type deduction for local variables in the function body, and explicitly declare the types in the function signature, unless, of course, when your function is generic and you have to use `auto` for your generic parameters and omit the return type if it depends on the generic parameters.
+
 #### ***Task 2:***
 
 We can now write functions and use them to process different things!
