@@ -128,8 +128,9 @@ auto b = PlusOne(3.14); // calls PlusOne<double>
 ```
 
 Now, we can restructure the example above a little bit better if we make `PlusOne` generic. This is easy to do in C++, we simply change the type of the corresponding parameters to `auto`, meaning they could be anything.
+
 <details><summary>Hidden magic</summary>
-Your function would technically be a [function template](https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template) if it contains at least one `auto` parameter.
+    Your function would technically be a <a href="https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template">function template</a>, since it contains at least one `auto` parameter.
 </details>
 
 ```cpp
