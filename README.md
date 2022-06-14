@@ -175,7 +175,7 @@ You should see `42` when you run the program.
 Let's use what we learned and make `TimesTwo` more interesting!
 
 - Change the signature of `TimesTwo` and make it generic.
-- You might also need to change the definition in the function body of `TimesTwo` if you used multiplcation for the previous task. Note that multiplcation is not defined for `std::string`, but addition is, so how do you express "times 2" in the form of addition?
+- You might also need to change the definition in the function body of `TimesTwo` if you used multiplication for the previous task. Note that multiplication is not defined for `std::string`, but addition is, so how do you express "times 2" in the form of addition?
 - Add the following print statements to your `main` function
 
 ```cpp
