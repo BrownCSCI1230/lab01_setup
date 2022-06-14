@@ -162,3 +162,28 @@ auto y = Apply(Plus(-1.1), 4.24); // y == 3.14
 You can find more information about lambdas [here](https://en.cppreference.com/w/cpp/language/lambda).
 
 #### ***Task 2:***
+
+We can now write functions and use them to process different things!
+
+- Write a function `TimesTwo` which takes an `int`, returns an `int`, and does what the function name suggests.
+- Add `std::cout << TimesTwo(21) << std::endl;` to your `main` function.
+
+You should see `42` when you run the program.
+
+#### ***Task 3:***
+
+Let's use what we learned and make `TimesTwo` more interesting!
+
+- Change the signature of `TimesTwo` and make it generic.
+- You might also need to change the definition in the function body of `TimesTwo` if you used multiplcation for the previous task. Note that multiplcation is not defined for `std::string`, but addition is, so how do you express "times 2" in the form of addition?
+- Add the following print statements to your `main` function
+
+```cpp
+std::cout << TimesTwo(123) << std::endl;
+std::cout << TimesTwo(3.14) << std::endl;
+std::cout << TimesTwo(std::string{ "abc" }) << std::endl;
+```
+
+You should see `246`, `6.28` and `abcabc` when you run the program.
+
+## Create Your Own Types
