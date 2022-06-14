@@ -111,7 +111,7 @@ auto PlusOne(int x)->int {
 }
 ```
 
-The return type after `->` can be omitted, in such case the compiler will deduce the return type from the return statement in the function body. You may create multiple functions with the same name and this allows you to do something called overloading, which you might have heard from languages like Java.
+The return type after `->` can be omitted, in such case the compiler will deduce the return type from the return statement in the function body. You may create multiple functions with the same name and this allows you to do something called _overloading_, which you might have heard from languages like Java.
 
 ```cpp
 auto PlusOne(int x)->int {
@@ -128,6 +128,9 @@ auto b = PlusOne(3.14); // calls PlusOne<double>
 ```
 
 Now, we can restructure the example above a little bit better if we make `PlusOne` generic. This is easy to do in C++, we simply change the type of the corresponding parameters to `auto`, meaning they could be anything.
+<details><summary>Hidden magic</summary>
+Your function would technically be a [function template](https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template) if it contains at least one `auto` parameter.
+</details>
 
 ```cpp
 // generic PlusOne
