@@ -253,7 +253,7 @@ Now that we've seen what we can do with `Rectangle`, are you ready to create a n
 
 - Create a `Circle` type using `struct`.
 - `Circle` should contain a data member `Radius`, and two member functions `CalculateArea` and `CalculatePerimeter`.
-- After completing your `Circle` type, create a few instances of `Circle` in your `main` function, and call their member function.
+- After completing your `Circle` type, create a few instances of `Circle` in your `main` function, and call their member functions.
 
 See if your `Circle` instances exhibit the expected behaviors when you run the program.
 
@@ -289,3 +289,12 @@ See if `PrintShape` exhibits the expected polymorphic behavior.
 </details>
 
 ## Containers and Strings
+
+- std::array
+- std::vector
+- std::string
+
+## Pointers and References
+Forwarding reference, Passing by reference
+
+## Dynamic Memory Management and Smart Pointers
