@@ -323,7 +323,7 @@ for (auto Element : y)
 
 You can learn more about `std::array` over [here](https://en.cppreference.com/w/cpp/container/array).
 
-`std::vector` is a dynamic size array, unlike `std::array`, it allows us to insert or remove elements anytime. It has almost all capabilities of `std::array`, however, we'd prefer `std::array` over `std::vector` whenever possible because using `std::vector` triggers dynamic memory allocation (which we'll talk about later), and thus it has a performance penalty compared to `std::array`. Below shows you the basic usage of `std::vector`
+`std::vector` is a dynamic size array, unlike `std::array`, it allows us to insert or remove elements anytime. It has almost all capabilities of `std::array`, however, we'd prefer `std::array` over `std::vector` whenever possible because using `std::vector` triggers dynamic memory allocation (which we'll talk about later), and thus it has a performance penalty compared to `std::array`. Below shows you the basics of `std::vector`
 
 ```cpp
 #include <vector> // import std::vector
@@ -352,6 +352,30 @@ for (auto Element : y)
 ```
 
 You can learn more about `std::vector` over [here](https://en.cppreference.com/w/cpp/container/vector).
+
+`std::string` provides basic string operations in C++, it has many methods which you can find [here](https://en.cppreference.com/w/cpp/string/basic_string). Below shows you how to create string objects, or convert string literals to `std::string`
+
+```cpp
+#include <string> // import std::string
+
+auto x = std::string{}; // create an empty string
+auto y = std::string{ "abcd hello" };  // convert a string literal to std::string
+
+y += "efgh"; // use + to concatenate strings
+```
+
+You might have noticed that it is cumbersome to convert string literals to `std::string`, and the standard library provides us a convenient solution by simply adding an _s_ suffix after a string literal.
+
+```cpp
+// need to use this namespace to gain access to custom literals in the standard library
+using namespace std::literals;
+
+auto x = "hello world"s; // x is of type std::string
+```
+
+#### ***Task 7:***
+
+aaa
 
 ## Pointers and References
 Forwarding reference, Passing by reference
