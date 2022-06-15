@@ -364,7 +364,7 @@ auto y = std::string{ "abcd hello" };  // convert a string literal to std::strin
 y += "efgh"; // use + to concatenate strings
 ```
 
-You might have noticed that it is cumbersome to convert string literals to `std::string`, and the standard library provides us a convenient solution by simply adding an _s_ suffix after a string literal.
+You might have noticed that it is cumbersome to convert string literals to `std::string`, and the standard library provides us a convenient solution by simply adding an _s_ [suffix](https://en.cppreference.com/w/cpp/string/basic_string/operator%22%22s) after a string literal.
 
 ```cpp
 // need to use this namespace to gain access to custom literals in the standard library
@@ -375,7 +375,13 @@ auto x = "hello world"s; // x is of type std::string
 
 #### ***Task 7:***
 
-aaa
+We learned the basics of containers and strings, let's trying using them!
+
+- Create a container of strings, you're free to pick either `std::array` or `std::vector`.
+- Fill the container with some strings.
+- repeat each string element in the container.
+
+Now print each string element in the container, and see if the result is as expected.
 
 ## Pointers and References
 Forwarding reference, Passing by reference
