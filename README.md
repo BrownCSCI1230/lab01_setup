@@ -290,9 +290,38 @@ See if `PrintShape` exhibits the expected polymorphic behavior.
 
 ## Containers and Strings
 
+The C++ standard library provides us many useful utilities, and we'll focus on three most commonly used things:
+
 - std::array
 - std::vector
 - std::string
+
+`std::array` is a fixed length array and we can use it like the following
+
+```cpp
+#include <array> // import std::array
+
+auto x = std::array<int, 3>{}; // need to declare element type and length
+
+// element type and length can be deduced
+// if you initialize the array immediately with values
+auto y = std::array{ 3.14, 2.71 }; // deduced to std::array<double, 2>
+
+// element access
+auto z = y[0]; // z == 3.14
+x[0] = 42; // now the first element of x is 42
+auto [a, b, c] = x; // can be unpacked, a == 42, b == 0, c == 0
+
+// commonly used array methods
+auto LengthX = x.size(); // query length
+auto UnderlyingPointer = x.data(); // we'll explain what a pointer is in the following section
+
+// can be looped over element-wise
+for (auto Element : y)
+    std::cout << Element << " "; // prints 3.14 2.71
+```
+
+You can learn more about `std::array` over [here](https://en.cppreference.com/w/cpp/container/array).
 
 ## Pointers and References
 Forwarding reference, Passing by reference
