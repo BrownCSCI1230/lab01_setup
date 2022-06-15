@@ -323,6 +323,36 @@ for (auto Element : y)
 
 You can learn more about `std::array` over [here](https://en.cppreference.com/w/cpp/container/array).
 
+`std::vector` is a dynamic size array, unlike `std::array`, it allows us to insert or remove elements anytime. It has almost all capabilities of `std::array`, however, we'd prefer `std::array` over `std::vector` whenever possible because using `std::vector` triggers dynamic memory allocation (which we'll talk about later), and thus it has a performance penalty compared to `std::array`. Below shows you the basic usage of `std::vector`
+
+```cpp
+#include <vector> // import std::vector
+
+auto x = std::vector<int>{}; // need to declare element type
+
+// element type can be deduced
+// if you initialize the vector immediately with values
+auto y = std::vector{ 3.14, 2.71 }; // deduced to std::vector<double>
+
+// element manipulation
+auto z = y[0]; // z == 3.14
+x.push_back(42); // add an element to the end of the vector
+x.push_back(123); // add another element after the 42 we just inserted
+x.pop_back(); // remove the element we just added
+
+// commonly used vector methods
+x.resize(10); // resize the vector, change the number of elements it contains
+y.reserve(20); // pre-allocate memory for more elements, but the number of elements stays the same
+auto LengthX = x.size(); // query length
+auto UnderlyingPointer = x.data(); // we'll explain what a pointer is in the following section
+
+// can be looped over element-wise
+for (auto Element : y)
+    std::cout << Element << " "; // prints 3.14 2.71
+```
+
+You can learn more about `std::vector` over [here](https://en.cppreference.com/w/cpp/container/vector).
+
 ## Pointers and References
 Forwarding reference, Passing by reference
 
