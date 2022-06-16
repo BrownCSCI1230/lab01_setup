@@ -404,6 +404,18 @@ auto MemoryAddressOfX = reinterpret_cast<unsigned long long>(px); // cast pointe
 std::cout << MemoryAddressOfX;
 ```
 
+The first thing we can do with a pointer is to _dereference_ it, meaning obtaining the entity at the address that the pointer points to. This can be achieved by using the dereference operator which also has the form of a star `*`. Dereferencing a pointer gives us something called a _reference_, meaning the entity at a particular memory address. The reference type is denoted by the entity type followed by `&`.
+
+```cpp
+int x = 42;
+
+int* px = &x;
+int& refx = *px; // obtain a reference to x by dereferencing its pointer
+
+refx = 123; // this sets x to 123 too, because refx and x share the same memory address, they are the exact same thing!
+std::cout << x; // you should see 123 here
+```
+
 Forwarding reference, Passing by reference
 
 ## Dynamic Memory Management and Smart Pointers
