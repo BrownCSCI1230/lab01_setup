@@ -384,6 +384,26 @@ We learned the basics of containers and strings, let's trying using them!
 Now print each string element in the container, and see if the result is as expected.
 
 ## Pointers and References
+
+Every entity in our program, variables, functions, constants, values that a register cannot hold, they all exist somewhere in memory, and they all have a unique memory location called _memory_ _address_.
+
+A pointer is an integer storing a memory address, and it allows us to manipulate the object at that address. We can obtain a pointer to almost anything in C++ by taking its address using the _address_ _of_ operator `&`. The obtained address will be of a pointer type, denoted by the target object type followed by a star `*`.
+
+```cpp
+int x = 42;
+
+int* px = &x; // px is a pointer to an integer, pointing to x
+auto px2 = &x; // type deduction works for pointers too, type of px2 deducted to int*
+auto* px3 = &x; // partial type deduction works too, px3 is a pointer to some deduced type, auto deduced to int
+
+// pointer variables themselves also reside somewhere in memory, you can get a pointer to pointer
+auto ppx = &px; // ppx is of type int**, a pointer to a pointer to an integer
+
+// let's see where x is located in (virtual) memory!
+auto MemoryAddressOfX = reinterpret_cast<unsigned long long>(px); // cast pointer to largest integer type
+std::cout << MemoryAddressOfX;
+```
+
 Forwarding reference, Passing by reference
 
 ## Dynamic Memory Management and Smart Pointers
