@@ -411,10 +411,39 @@ int x = 42;
 
 int* px = &x;
 int& refx = *px; // obtain a reference to x by dereferencing its pointer
+int& refx2 = x; // another way to obtain a reference is to directly 'reference' it.
 
 refx = 123; // this sets x to 123 too, because refx and x share the same memory address, they are the exact same thing!
 std::cout << x; // you should see 123 here
 ```
+
+#### ***Task 8:***
+
+What is the type of `*ppx`? What about `**ppx`? Compare your answers with the TA while getting checked off!
+
+One thing we have to be careful with references is that we **always** have to spell out `&` in the type declaration when creating a reference, whether we're using type deduction or not. Otherwise we'd be creating a copy rather than a reference.
+
+```cpp
+int x = 42;
+int* px = &x;
+
+int& refx = *px; // a reference to x, same memory address as x
+auto& refx2 = x; // also a reference to x, with type deduction, same memory address
+auto& refx3 = refx; // same, since refx is the same thing as x
+
+int y = *px; // this is a copy of x! it's a new variable with its own unique address!
+auto y2 = *px; // again, it's a copy with its own unique address!
+auto y3 = x; // same as above
+```
+
+This is because C++ has _value_ _semantics_ by default.
+<details><summary>Just to be pedantic...</summary>
+    This is known as lvalue-to-rvalue <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion#Lvalue_to_rvalue_conversion">type decay</a> in C++ terminology.
+</details>
+
+
+
+
 
 Forwarding reference, Passing by reference
 
