@@ -440,7 +440,7 @@ This is because C++ has _value_ _semantics_ by default.
 <details><summary>Just to be pedantic...</summary>
     This is known as lvalue-to-rvalue <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion#Lvalue_to_rvalue_conversion">type decay</a> in C++ terminology.
 </details>
-Now that we know C++ makes a copy when creating something from another, unless specified otherwise (i.e. creating a reference). We should really change most of the parameter types in our function signature to references, unless it's something trivial like an `int` or `double`. Otherwise, a full copy will be made for every object you passed to the function, and it could lead to serious performance problems!
+Now that we know C++ makes a copy when creating something from another, unless specified otherwise (i.e. creating a reference). We should really change most of the parameter types in our function signature to references, unless it's something trivial like an `int` or `double`. Otherwise, a full copy will be made for every object we passed to the function, and it could lead to serious performance problems!
 
 ```cpp
 auto F(std::vector<int> Things)->void {
@@ -473,7 +473,21 @@ for (auto& x : Things) // this loops over each element by reference
 
 #### ***Task 9:***
 
-Writw a generic function that doubles each element in a container.
+Let's try our hand at references!
+
+- Navigate to the empty function `DoubleEachElement`, this function takes any container and doubles each element in the container.
+
+```cpp
+auto DoubleEachElement(/* ??? Container */)->void {
+    // your code here
+}
+```
+
+- Uncomment the `Container` parameter, replace `???` with a proper type declaration. (hint: references work with generic parameters too!).
+- Complete the function body using what we learned.
+- Pass different `std::array` and `std::vector` objects to `DoubleEachElement` in your `main` function.
+
+Print the results after `DoubleEachElement` calls, see if it matches your expectation!
 
 Forwarding reference
 
