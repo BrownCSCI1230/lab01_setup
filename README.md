@@ -453,6 +453,7 @@ auto BetterF(std::vector<int>& Things)->void {
 auto Things = std::vector{ 1, 2, 3, 4 };
 F(Things); // 'Things' will be copied when you call F() because it gets passed by value!
 BetterF(Things); // no copy will be made here! because 'Things' gets passed by reference!
+// This also means if BetterF modifies 'Things' in any way in its function body, it will be reflected here
 ```
 
 
