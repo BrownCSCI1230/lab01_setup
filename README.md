@@ -404,7 +404,7 @@ auto MemoryAddressOfX = reinterpret_cast<unsigned long long>(px); // cast pointe
 std::cout << MemoryAddressOfX;
 ```
 
-The first thing we can do with a pointer is to _dereference_ it, meaning obtaining the entity at the address that the pointer points to. This can be achieved by using the dereference operator which also has the form of a star `*`. Dereferencing a pointer gives us something called a _reference_, meaning the entity at a particular memory address. The reference type is denoted by the entity type followed by `&`.
+The first thing we can do with a pointer is to _dereference_ it, meaning obtaining the entity at the address that the pointer points to. This can be achieved by using the dereference operator which also has the form of a star `*`. Dereferencing a pointer gives us something called a _reference_, meaning the entity at a particular memory address. The reference type is denoted by the entity type followed by `&`. For pointers to non-primitive types, we can also use `->` to obtain a reference to its members.
 
 ```cpp
 int x = 42;
@@ -415,6 +415,14 @@ int& refx2 = x; // another way to obtain a reference is to directly 'reference' 
 
 refx = 123; // this sets x to 123 too, because refx and x share the same memory address, they are the exact same thing!
 std::cout << x; // you should see 123 here
+
+auto y = Rectangle{ .Length = 4, .Width = 2 };
+auto py = &y;
+
+auto a = py->CalculateArea(); // same as y.CalculateArea()
+double& yLength = py->Length; // same as y.Length
+yLength = 6; // this sets y.Length to 6
+py->Width = 3; // this sets y.Width to 3
 ```
 
 #### ***Task 8:***
