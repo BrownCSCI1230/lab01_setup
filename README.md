@@ -456,6 +456,24 @@ BetterF(Things); // no copy will be made here! because 'Things' gets passed by r
 // This also means if BetterF modifies 'Things' in any way in its function body, it will be reflected here
 ```
 
+The same also applies to looping over containers.
+
+```cpp
+auto Things = std::vector{ 1, 2, 3, 4 };
+
+// this copies every element in 'Things'
+// not ideal if element type is not trivial to copy
+for (auto x : Things)
+    std::cout << x << std::endl;
+
+for (auto& x : Things) // this loops over each element by reference
+    x += x; // which also enables you to modify the elements
+// now Things = [2, 4, 6, 8]
+```
+
+#### ***Task 9:***
+
+Writw a generic function that doubles each element in a container.
 
 Forwarding reference
 
