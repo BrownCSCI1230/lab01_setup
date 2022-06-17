@@ -440,11 +440,22 @@ This is because C++ has _value_ _semantics_ by default.
 <details><summary>Just to be pedantic...</summary>
     This is known as lvalue-to-rvalue <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion#Lvalue_to_rvalue_conversion">type decay</a> in C++ terminology.
 </details>
+Now that we know C++ makes a copy when creating something from another, unless specified otherwise (i.e. creating a reference). We should really change most of the parameter types in our function signature to references, unless it's something trivial like an `int` or `double`. Otherwise, a full copy will be made for every object you passed to the function, and it could lead to serious performance problems!
+
+```cpp
+auto F(std::vector<int> Things)->void {
+    // empty
+}
+auto BetterF(std::vector<int>& Things)->void {
+    // empty
+}
+
+auto Things = std::vector{ 1, 2, 3, 4 };
+F(Things); // 'Things' will be copied when you call F() because it gets passed by value!
+BetterF(Things); // no copy will be made here! because 'Things' gets passed by reference!
+```
 
 
-
-
-
-Forwarding reference, Passing by reference
+Forwarding reference
 
 ## Dynamic Memory Management and Smart Pointers
