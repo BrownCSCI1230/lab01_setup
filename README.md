@@ -489,6 +489,43 @@ auto DoubleEachElement(/* ??? Container */)->void {
 
 Print the results after `DoubleEachElement` calls, see if it matches your expectation!
 
-Forwarding reference
+One problem with the basic form of references we've learned so far, is that they cannot bind to _values_ ([rvalue](https://en.cppreference.com/w/cpp/language/value_category#rvalue) in C++ terminology). The reason is obvious, values such as `123` or `3.14` do not have a memory address because they are not stored in memory by some variable. The same applies to function parameters, we cannot pass values to reference parameters.
 
-## Dynamic Memory Management and Smart Pointers
+```cpp
+auto BetterF(std::vector<int>& Things)->void {
+    // empty
+}
+
+auto x = 42;
+auto Things = std::vector{ 1, 2, 3, 4 };
+
+auto& refx = x; // OK, bind to a variable
+// auto& IncorrectRef = 42; // error, (lvalue) reference cannot bind to (r)value
+
+BetterF(Things); // OK, reference parameter binds to 'Things'
+// BetterF(std::vector{ 1, 2, 3, 4 }); // error, (lvalue) reference parameter cannot bind to (r)value
+```
+
+This can be inconvenient in some cases. Ideally, we'd want something that behaves like a reference when we bind it to a variable, and like a new variable when we provide it a value. Luckily, we do have something exactly like this in C++ called _forwarding_ _references_ in the form of `auto&&`.
+<details><summary>Be careful though</summary>
+    && after a concrete type, like int&& or std::vector<int>&&, does not form a forwarding reference! These are rvalue references which are outside the scope of this lab. However, you can learn more about rvalue references <a href="https://en.cppreference.com/w/cpp/language/reference#Rvalue_references">here</a>, if you're interested.
+</details>
+
+```cpp
+auto EvenBetterF(auto&& Things)->void {
+    // empty
+}
+
+auto x = 42;
+auto Things = std::vector{ 1, 2, 3, 4 };
+
+auto&& refx = x; // OK, bind to a variable, same as 'auto& refx = x;'
+auto&& ForwardRef = 42; // OK, creates a new variable as if 'auto ForwardRef = 42;'
+
+EvenBetterF(Things); // OK, forwarding reference parameter binds to 'Things'
+EvenBetterF(std::vector{ 1, 2, 3, 4 }); // OK, as if the parameter type is non-reference
+```
+
+## Pointer Arithmetic (consider moving to Pencil)
+
+## Dynamic Memory Management and Smart Pointers (consider moving to Pencil)
