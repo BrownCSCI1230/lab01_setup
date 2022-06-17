@@ -508,7 +508,7 @@ BetterF(Things); // OK, reference parameter binds to 'Things'
 
 This can be inconvenient in some cases. Ideally, we'd want something that behaves like a reference when we bind it to a variable, and like a new variable when we provide it a value. Luckily, we do have something exactly like this in C++ called _forwarding_ _references_ in the form of `auto&&`.
 <details><summary>Be careful though</summary>
-    && after a concrete type, like int&& or std::vector<int>&&, does not form a forwarding reference! These are rvalue references which are outside the scope of this lab. However, you can learn more about rvalue references <a href="https://en.cppreference.com/w/cpp/language/reference#Rvalue_references">here</a>, if you're interested.
+    && after a concrete type, like int&& or std::vector&lt;int&gt;&&, does not form a forwarding reference! These are rvalue references which are outside the scope of this lab. However, you can learn more about rvalue references <a href="https://en.cppreference.com/w/cpp/language/reference#Rvalue_references">here</a>, if you're interested.
 </details>
 
 ```cpp
@@ -522,7 +522,7 @@ auto Things = std::vector{ 1, 2, 3, 4 };
 auto&& refx = x; // OK, bind to a variable, same as 'auto& refx = x;'
 auto&& ForwardRef = 42; // OK, creates a new variable as if 'auto ForwardRef = 42;'
 
-EvenBetterF(Things); // OK, forwarding reference parameter binds to 'Things'
+EvenBetterF(Things); // OK, reference parameter binds to 'Things'
 EvenBetterF(std::vector{ 1, 2, 3, 4 }); // OK, as if the parameter type is non-reference
 ```
 
