@@ -375,7 +375,7 @@ auto x = "hello world"s; // x is of type std::string
 
 #### ***Task 7:***
 
-We learned the basics of containers and strings, let's trying using them!
+We learned the basics of containers and strings, let's try using them!
 
 - Create a container of strings, you're free to pick either `std::array` or `std::vector`.
 - Fill the container with some strings.
