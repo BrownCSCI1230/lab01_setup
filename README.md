@@ -1,44 +1,63 @@
 # Lab 1: Setup
 
-
 ## 0. Intro
 
-The purpose of this lab is twofold: to help you get set up with working on CS123 projects locally, and to help you learn the basics of C++ -- The programming language that we will be using for the labs and the assignments.
+Welcome to CS123!
+
+The purpose of this lab is twofold: to help you get set up to work locally, and to help you learn the basics of C++, the programming language that we'll be using in this class.
 
 In the rest of this 1-2h lab, you will:
 
-1. Install Qt 6 locally on your computer, and
+1. Install Qt and QtCreator locally,
 2. Build and run a starter Qt program, and
-3. ??placeholder for C++ tutorial
+3. Gain some familiarity with basic C++ features.
 
-**Note:** Overall Qt 6 and the C++ compiler will suck up ??GB of space, approximately. Additional images or scene files can also take up a fair bit of space. Be sure you have room.
+## 1. Qt and QtCreator
 
-##
-##
-## Installing Qt 6
+In CS123, we use **Qt** and **QtCreator** to develop, build, and run all our projects and labs.
 
-## **Windows**
+- [Qt](https://www.qt.io) is a software used for building graphical user interfaces (GUIs) and cross-platform applications, e.g. for smart TVs or in-vehicle displays.
+- [QtCreator](https://www.qt.io/product/development-tools) is the integrated development environment (IDE) included with each Qt install. It provides useful tools for developing in C++, which you'll learn about later in the course.
 
-1. Install Qt (takes about ?? mins)
+<details>
+  <summary>But I prefer writing code in VS Code / Emacs / Notepad / ...</summary>
 
-    a. [https://www.qt.io/download-qt-installer](https://www.qt.io/download-qt-installer)
+  <br>
+  If you know what you're doing, you <i>can</i> write code in your preferred IDE or text editor. Do note, however, that our course uses a standardized environment for grading&mdash;that is to say, we will build and run your projects through QtCreator. Therefore, you'll probably want to have Qt and QtCreator, if only to test that your code works as expected!
+</details>
 
-    b. Open when done downloading
-2. Follow instructions on the installer to create a new Qt account if you do not have one
-3. When selecting components:
+### 1.1. Local Installation, and Opening Your First Project
 
-    a. Choose “Custom Installation”
-![](1.png)
+| Step | Instruction                                                                                                                                                                                                                                                                                                                                                                                       | Screenshot                                   |
+| :--: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------- |
+|  1   | Download and open the appropriate Qt installer for your operating system from [https://www.qt.io/download-qt-installer](https://www.qt.io/download-qt-installer).                                                                                                                                                                                                                                 | ![](readme-images/download-qt-installer.png) |
+|  2   | Follow the instructions on the installer to create a free Qt account (or use an existing one).                                                                                                                                                                                                                                                                                                    | ![](readme-images/create-qt-account.png)     |
+|  3   | When prompted, opt for a `Custom Installation`.                                                                                                                                                                                                                                                                                                                                                   | ![](readme-images/custom-installation.png)   |
+|  4   | Minimally, you'll need to select these 3 components:<br><br>1. `Qt 6.2.4 > [your OS]`,<br>2. `Developer and Designer Tools > CMake [some version]`, and<br>3. `Developer and Designer Tools > Ninja [some version]`.<br><br>Note that `QtCreator`, the Qt IDE, will be installed as well&mdash;you do not have to select it.                                                                      | ![](readme-images/selected-components.png)   |
+|  5   | Continue, and finish the installation process.                                                                                                                                                                                                                                                                                                                                                    | ![](readme-images/finished-install.png)      |
+|  6   | Finally, launch QtCreator, click `Open Project...`, and, in the pop-up window, select the `lab01.pro` file located in this repository.<br><br><details><summary>What is a `.pro` file?</summary><br>A `.pro` file is a <i>multi-platform</i> project file, which Qt can turn into a <i>platform-specific</i> makefile. It stores configuration information, e.g. what files to include.</details> | ![](readme-images/open-project.png)          |
 
-    b. Under “Qt”, you’ll need Qt 6.2.4, and select the items as shown in the screenshot for the “Developer and Designer Tools” section. MinGW is what provides the GCC compiler you'll need to compile your C++ code.
-![](2.png)
-4. Continue and finish the installation process.
-5. We'll provide an example on how to open, configure and run a Qt project later on in this guide.
+### 1.2. The QtCreator Interface
 
-## Placeholders
+If you completed all the steps successfully, you should see the following screen. Good work!
 
-## Hello World
-A simple C++ program that does nothing is provided below:
+[Insert labelled image here]
+
+- [Include something about "Project View"]
+- [Include something about "Projects" aka settings]
+- [Include something about "Run"].
+
+When you're ready, hit "run" and proceed to the next section.
+
+## 2. C++
+
+### 2.1. Hello World!
+
+[Include something about the expected output]
+
+The program you just ran is a simple C++ program that does nothing.
+
+From the left sidebar, open the `Sources/main.cpp` file, and take a look:
 
 ```cpp
 // A C++ program always starts from the main() function
@@ -64,7 +83,7 @@ The **input/output library** (`iostream` library) is part of the C++ standard li
   - `std::cin` reads from stdin (terminal input)
   - `std::cerr` prints to stderr (terminal error messages)
 
-#### ***Task 1:***
+**_Task 1:_**
 
 We are ready to write something on the screen!
 
@@ -74,7 +93,7 @@ At this point when you run your program you should see "Hello World!"
 
 Now we can get into the more fun stuff!
 
-## Primitive Types, Variables and Functions
+### 2.2. Primitive Types, Variables and Functions
 
 Like many other programming languages, C++ comes with several primitive types including:
 
@@ -128,6 +147,7 @@ auto b = PlusOne(3.14); // calls PlusOne<double>
 ```
 
 Now, we can restructure the example above a little bit better if we make `PlusOne` generic. This is easy to do in C++, we simply change the type of the corresponding parameters to `auto`, meaning they could be anything.
+
 <details><summary>Hidden magic</summary>
     Your function would technically be a <a href="https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template">function template</a> if it contains at least one <em>auto</em> parameter.
 </details>
@@ -162,12 +182,13 @@ auto y = Apply(Plus(-1.1), 4.24); // y == 3.14
 You can find more information about lambdas [here](https://en.cppreference.com/w/cpp/language/lambda).
 
 You've probably noticed that type deduction is very powerful in C++, pushing it to the extreme could make your coding experience largely resemble working with an _untyped_ language like Python or JavaScript. However, overusing it has a negative impact on the readability and maintainability of your code.
+
 <details><summary>Evil don't click</summary>
     And crazy compilation errors or even <a href="https://godbolt.org/z/8ozn45cMs">compiler crash</a> if your code is buggy in a certain way.
 </details>
 You should be careful to strike a balance between explicit type declaration and type deduction to maximize your code readability. The balance would likely be different for everybody, however, as a rule of thumb, we recommend to use type deduction for local variables in the function body, and explicitly declare the types in the function signature, unless, of course, when your function is generic and you have to use `auto` for your generic parameters and omit the return type if it depends on the generic parameters.
 
-#### ***Task 2:***
+**_Task 2:_**
 
 We can now write functions and use them to process different things!
 
@@ -176,7 +197,7 @@ We can now write functions and use them to process different things!
 
 You should see `42` when you run the program.
 
-#### ***Task 3:***
+**_Task 3:_**
 
 Let's use what we learned and make `TimesTwo` more interesting!
 
@@ -192,7 +213,7 @@ std::cout << TimesTwo(std::string{ "abc" }) << std::endl;
 
 You should see `246`, `6.28` and `abcabc` when you run the program.
 
-## Create Your Own Types
+### 2.3. Create Your Own Types
 
 Similar to how we create custom types in other languages, we can combine existing types to make a data structure, and bundle it with dedicated functions to create new types in C++. Custom types are also known as _classes_ in many languages including C++. We can use the keyword `struct` or `class` to create custom types, `struct`s and `class`es are almost the exact same thing in C++, with the only difference being that `struct`s have public member access by default and `class`es have private access by default. We'll use `struct` to refer to both `struct`s and `class`es from here. The basic form of a `struct` is shown as follows
 
@@ -219,11 +240,11 @@ and here's how we can use the `Rectangle` type that we just created!
 
 ```cpp
 // create an instance of Rectangle
-auto x = Rectangle{ .Length = 2, .Width = 4 }; 
+auto x = Rectangle{ .Length = 2, .Width = 4 };
 
 // field names can be omitted
-// in such case values in the brackets 
-// will be assigned to each field sequentially 
+// in such case values in the brackets
+// will be assigned to each field sequentially
 auto y = Rectangle{ 4, 3 }; // equivalent to Rectangle{ .Length = 4, .Width = 3 }
 
 // equivalent to Rectangle{ .Length = 5, .Width = 1 } because of the default value
@@ -238,7 +259,7 @@ auto NewArea = x.CalculateArea(); // NewArea == 16
 x.MakeItSquare(OldLength); // now Length = Width = 2 for x
 ```
 
-#### ***Task 4:***
+**_Task 4:_**
 
 Let's add more behaviors to our `Rectangle` type and enhance its capabilities!
 
@@ -247,7 +268,7 @@ Let's add more behaviors to our `Rectangle` type and enhance its capabilities!
 
 You should see `30` when you run the program.
 
-#### ***Task 5:***
+**_Task 5:_**
 
 Now that we've seen what we can do with `Rectangle`, are you ready to create a new type from ground zero?
 
@@ -260,11 +281,12 @@ See if your `Circle` instances exhibit the expected behaviors when you run the p
 Oof! Look what we've achieved! You might not believe it but I assure you that we've learned enough to do some non-trivial things in C++. If you had previous experience in object oriented programming, you probably know that there's something called _polymorphism_ which allows us to deal with different subtypes in the same way, as long as they're derived from the same supertype (a.k.a base type). This however requires us to define an interface (the supertype), and implement the interface for all related types. Sometimes it's hard to reason our program this way because more often, we understand things bottom-up rather than top-down. What it means is that instead of defining an interface first, and then implementing the interface for various concrete type, we start from simple concrete types without worrying about what kind of interfaces it satisfies, then we notice that some types _happen_ _to_ exhibit similar behaviors which allow us to process them uniformly. Indeed, this is the case for our `Rectangle` and `Circle`, as they come with the same member functions `CalculateArea` and `CalculatePerimeter`.
 
 But we haven't declared a common interface for `Rectangle` and `Circle`! Can we still write something to deal with them uniformly in C++? And more importantly, have we learned the necessary tool to do that? The answer is yes, and yes we have. Remember the generic functions we learned in the previous section? It has the magic property of allowing us to do _anything_ with the `auto` parameters. So all we have to do is to pass `Rectangle` and `Circle` instances to a generic parameter.
+
 <details><summary>Nerd talk for people who have taken CSCI1730</summary>
     The reason behind this magic is that C++ templates are <a href="https://en.wikipedia.org/wiki/Structural_type_system">structurally typed</a>, and they do not enforce <a href="https://en.wikipedia.org/wiki/Parametricity">parametricity</a>.
 </details>
 
-#### ***Task 6:***
+**_Task 6:_**
 
 - Navigate to the empty function `PrintShape`
 
@@ -284,11 +306,12 @@ Perimeter: /* perimeter of the shape */
 - Call `PrintShape` in your `main` function with different `Rectangle` and `Circle` objects.
 
 See if `PrintShape` exhibits the expected polymorphic behavior.
+
 <details><summary>Nerd talk 2 for people who have taken CSCI1730</summary>
     Generic functions like PrintShape are technically known as parametric polymorphism, which is a universal quantification over types. The classic OOP polymorphism, technically known as subtype polymorphism, is an existential quantification over types. They both correspond to second order logic and in many cases, one may replace another.
 </details>
 
-## Containers and Strings
+### 2.4. Containers and Strings
 
 The C++ standard library provides us many useful utilities, and we'll focus on three most commonly used things:
 
@@ -373,7 +396,7 @@ using namespace std::literals;
 auto x = "hello world"s; // x is of type std::string
 ```
 
-#### ***Task 7:***
+**_Task 7:_**
 
 We learned the basics of containers and strings, let's try using them!
 
@@ -383,7 +406,7 @@ We learned the basics of containers and strings, let's try using them!
 
 Now print each string element in the container, and see if the result is as expected.
 
-## Pointers and References
+### 2.5. Pointers and References
 
 Every entity in our program, variables, functions, constants, values that a register cannot hold, they all exist somewhere in memory, and they all have a unique memory location called _memory_ _address_.
 
@@ -425,7 +448,7 @@ yLength = 6; // this sets y.Length to 6
 py->Width = 3; // this sets y.Width to 3
 ```
 
-#### ***Task 8:***
+#### **_Task 8:_**
 
 What is the type of `*ppx`? What about `**ppx`? Compare your answers with the TA while getting checked off!
 
@@ -445,6 +468,7 @@ auto y3 = x; // same as above
 ```
 
 This is because C++ has _value_ _semantics_ by default.
+
 <details><summary>Just to be pedantic...</summary>
     This is known as lvalue-to-rvalue <a href="https://en.cppreference.com/w/cpp/language/implicit_conversion#Lvalue_to_rvalue_conversion">type decay</a> in C++ terminology.
 </details>
@@ -479,7 +503,7 @@ for (auto& x : Things) // this loops over each element by reference
 // now Things = [2, 4, 6, 8]
 ```
 
-#### ***Task 9:***
+**_Task 9:_**
 
 Let's try our hand at references!
 
@@ -515,6 +539,7 @@ BetterF(Things); // OK, reference parameter binds to 'Things'
 ```
 
 This can be inconvenient in some cases. Ideally, we'd want something that behaves like a reference when we bind it to a variable, and like a new variable when we provide it a value. Luckily, we do have something exactly like this in C++ called _forwarding_ _references_ in the form of `auto&&`.
+
 <details><summary>Be careful though</summary>
     && after a concrete type, like int&& or std::vector&lt;int&gt;&&, does not form a forwarding reference! These are rvalue references which are outside the scope of this lab. However, you can learn more about rvalue references <a href="https://en.cppreference.com/w/cpp/language/reference#Rvalue_references">here</a>, if you're interested.
 </details>
@@ -534,6 +559,6 @@ EvenBetterF(Things); // OK, reference parameter binds to 'Things'
 EvenBetterF(std::vector{ 1, 2, 3, 4 }); // OK, as if the parameter type is non-reference
 ```
 
-## Pointer Arithmetic (consider moving to Pencil)
+### 2.6. Pointer Arithmetic (consider moving to Pencil)
 
-## Dynamic Memory Management and Smart Pointers (consider moving to Pencil)
+### 2.7. Dynamic Memory Management and Smart Pointers (consider moving to Pencil)
