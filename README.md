@@ -49,6 +49,8 @@ If you completed all the steps successfully, you should see the following screen
 
 When you're ready, hit "run" and proceed to the next section.
 
+[ Note to TAs: we can make this project run some kind of setup check ]
+
 ## 2. C++
 
 ### 2.1. Hello World!
@@ -93,7 +95,7 @@ At this point when you run your program you should see "Hello World!"
 
 Now we can get into the more fun stuff!
 
-### 2.2. Primitive Types, Variables and Functions
+<!--
 
 Like many other programming languages, C++ comes with several primitive types including:
 
@@ -101,7 +103,9 @@ Like many other programming languages, C++ comes with several primitive types in
 - floating point types
 - arrays
 - functions and lambdas
-- pointers and references
+- pointers and references -->
+
+### 2.2. Variable Declarations
 
 Some of these you might already know from languages you learned before, some, such as pointers and references, are C++ concepts which we'll expand in the following sections. It is also worth noting that strings are not a primitive type in C++, string literals are simply character arrays. However, the standard library does provide the `std::string` type which allows us to perform common string operations.
 
@@ -121,6 +125,8 @@ auto z = 2.71; // type of z deduced as double
 // but I can ask the compiler to deduce it for me using auto
 auto w = "random string abcd";
 ```
+
+### Functions
 
 The same rules also apply to functions, the basic form of a function requires us to declare its return type, and the type for each parameter.
 
@@ -148,8 +154,9 @@ auto b = PlusOne(3.14); // calls PlusOne<double>
 
 Now, we can restructure the example above a little bit better if we make `PlusOne` generic. This is easy to do in C++, we simply change the type of the corresponding parameters to `auto`, meaning they could be anything.
 
-<details><summary>Hidden magic</summary>
-    Your function would technically be a <a href="https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template">function template</a> if it contains at least one <em>auto</em> parameter.
+<details>
+  <summary>Hidden magic</summary>
+  Your function would technically be a <a href="https://en.cppreference.com/w/cpp/language/function_template#Abbreviated_function_template">function template</a> if it contains at least one <em>auto</em> parameter.
 </details>
 
 ```cpp
@@ -410,7 +417,11 @@ Now print each string element in the container, and see if the result is as expe
 
 Every entity in our program, variables, functions, constants, values that a register cannot hold, they all exist somewhere in memory, and they all have a unique memory location called _memory_ _address_.
 
-A pointer is an integer storing a memory address, and it allows us to manipulate the object at that address. We can obtain a pointer to almost anything in C++ by taking its address using the _address_ _of_ operator `&`. The obtained address will be of a pointer type, denoted by the target object type followed by a star `*`.
+A pointer is an integer storing a memory address, and it allows us to manipulate the object at that address.
+
+#### 2.5.1. Obtaining Pointers
+
+We can obtain a pointer to almost anything in C++ by taking its address using the _address_ _of_ operator `&`. The obtained address will be of a pointer type, denoted by the target object type followed by a star `*`.
 
 ```cpp
 int x = 42;
@@ -427,7 +438,13 @@ auto MemoryAddressOfX = reinterpret_cast<unsigned long long>(px); // cast pointe
 std::cout << MemoryAddressOfX;
 ```
 
-The first thing we can do with a pointer is to _dereference_ it, meaning obtaining the entity at the address that the pointer points to. This can be achieved by using the dereference operator which also has the form of a star `*`. Dereferencing a pointer gives us something called a _reference_, meaning the entity at a particular memory address. The reference type is denoted by the entity type followed by `&`. For pointers to non-primitive types, we can also use `->` to obtain a reference to its members.
+#### 2.5.2. Dereferencing Pointers
+
+The first thing we can do with a pointer is to _dereference_ it, meaning obtaining the entity at the address that the pointer points to. This can be achieved by using the dereference operator which also has the form of a star `*`.
+
+Dereferencing a pointer gives us something called a **_reference_**, meaning the entity at a particular memory address. The reference type is denoted by the entity type followed by `&`. For pointers to non-primitive types, we can also use `->` to obtain a reference to its members.
+
+What the difference
 
 ```cpp
 int x = 42;
@@ -451,6 +468,12 @@ py->Width = 3; // this sets y.Width to 3
 #### **_Task 8:_**
 
 What is the type of `*ppx`? What about `**ppx`? Compare your answers with the TA while getting checked off!
+
+#### 2.5.3. Pointer Arithmetic (consider moving to Pencil)
+
+TODO
+
+#### 2.5.4. Value vs Pointer Semantics?
 
 One thing we have to be careful with references is that we **always** have to spell out `&` in the type declaration when creating a reference, whether we're using type deduction or not. Otherwise we'd be creating a copy rather than a reference.
 
@@ -559,6 +582,6 @@ EvenBetterF(Things); // OK, reference parameter binds to 'Things'
 EvenBetterF(std::vector{ 1, 2, 3, 4 }); // OK, as if the parameter type is non-reference
 ```
 
-### 2.6. Pointer Arithmetic (consider moving to Pencil)
+Now that you know this. YOu will use this for Brush and Pencil.
 
 ### 2.7. Dynamic Memory Management and Smart Pointers (consider moving to Pencil)
