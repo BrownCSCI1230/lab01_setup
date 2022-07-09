@@ -290,10 +290,11 @@ See if `PrintShape` exhibits the expected polymorphic behavior.
 
 ## Containers and Strings
 
-The C++ standard library provides us many useful utilities, and we'll focus on three most commonly used things:
+The C++ standard library provides us many useful utilities, and we'll focus on four most commonly used things:
 
 - std::array
 - std::vector
+- std::tuple
 - std::string
 
 `std::array` is a fixed length array and we can use it like the following
@@ -352,6 +353,30 @@ for (auto Element : y)
 ```
 
 You can learn more about `std::vector` over [here](https://en.cppreference.com/w/cpp/container/vector).
+
+`std::tuple` is a heterogeneous container, it is capable of storing elements of *different* types. It is most commonly used to achieve multiple return values in C++.
+
+```cpp
+#include <tuple> // import std::tuple
+
+auto Identity2(auto x, auto y) {
+    return std::tuple{ x, y };
+}
+
+auto [x, y] = Identity2(42, 3.14); // tuples can be unpacked, x == 42, y == 3.14
+
+// this is a variadic function (template), it takes any number of arguments of any type
+// it is unlikely that you'll need to use variadic functions for this course
+// if you ever need to use variadic functions, you can ask a TA for more information
+auto DoubleEach(auto ...x) {
+    return std::tuple{ x + x... };
+}
+
+auto [a, b, c] = DoubleEach(12, 2.71, std::string{ "abc" }); 
+// a == 24, b == 5.42, c == "abcabc"
+```
+
+You can learn more about `std::tuple` over [here](https://en.cppreference.com/w/cpp/utility/tuple).
 
 `std::string` provides basic string operations in C++, it has many methods which you can find [here](https://en.cppreference.com/w/cpp/string/basic_string). Below shows you how to create string objects, or convert string literals to `std::string`
 
