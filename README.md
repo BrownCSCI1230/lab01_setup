@@ -238,6 +238,8 @@ auto NewArea = x.CalculateArea(); // NewArea == 16
 x.MakeItSquare(OldLength); // now Length = Width = 2 for x
 ```
 
+If you have prior experience in class-based OOP, you might know that you can also use **constructors** to initialize an object, rather than directly initialize it field by field. Constructors indeed also exist in C++, in fact, the compiler will create several special (default, copy and move) constructors automatically if there's no user-declared constructor. You're allowed to define all of the aforementioned special constructors manually, and add any other constructors you like in C++. However, we recommend that you do not manually define your own constructors, doing so will complicate how your custom type behaves. Any type with a user-declared constructor will no longer be an [aggregate type](https://en.cppreference.com/w/cpp/language/aggregate_initialization) (the simplest custom types in C++). Improper handling of the copy constructor, move constructor, copy assignment operator, move assignment operator and destructor can break value semantics for your type and cause resource leaks. If you insist on creating your own constructors, you can find more information [here](https://en.cppreference.com/w/cpp/language/constructor) and [here](https://en.cppreference.com/w/cpp/language/member_functions#Special_member_functions). And you will do so at your own risk.
+
 #### ***Task 4:***
 
 Let's add more behaviors to our `Rectangle` type and enhance its capabilities!
