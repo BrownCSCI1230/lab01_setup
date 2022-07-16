@@ -43,7 +43,7 @@ A simple C++ program that does nothing is provided below:
 ```cpp
 // A C++ program always starts from the main() function
 // main() returns an integer indicating the execution state of the program
-int main() {
+auto main()->int {
     // you may leave the function body of main() empty if it does nothing
     // the compiler automatically inserts "return 0;" for you
     // indicating the execution is successful
@@ -106,15 +106,15 @@ auto w = "random string abcd";
 The same rules also apply to functions, the basic form of a function requires us to declare its return type, and the type for each parameter.
 
 ```cpp
-int PlusOne(int x) {
+auto PlusOne(int x)->int {
     return x + 1;
 }
 ```
 
-Similar to how type deduction works for variables, you may declare the return type `auto`, in such case the compiler will deduce the return type from the return statement in the function body. You may create multiple functions with the same name and this allows you to do something called _overloading_, which you might have heard from languages like Java.
+The return type after `->` can be omitted, in such case the compiler will deduce the return type from the return statement in the function body. You may create multiple functions with the same name and this allows you to do something called _overloading_, which you might have heard from languages like Java.
 
 ```cpp
-int PlusOne(int x) {
+auto PlusOne(int x)->int {
     return x + 1;
 }
 
@@ -123,16 +123,8 @@ auto PlusOne(double x) { // return type will be deduced
     return x + 1; // return type deduced as double
 }
 
-// overloading PlusOne
-// The "auto" syntax also works for explicit return types
-// The following is identical to "float PlusOne(float x)"
-auto PlusOne(float x)->float {
-    return x + 1;
-}
-
 auto a = PlusOne(123);  // calls PlusOne<int>
 auto b = PlusOne(3.14); // calls PlusOne<double>
-auto c = PlusOne(2.71f); // calls PlusOne<float>
 ```
 
 Now, we can restructure the example above a little bit better if we make `PlusOne` generic. This is easy to do in C++, we simply change the type of the corresponding parameters to `auto`, meaning they could be anything.
@@ -211,12 +203,12 @@ struct Rectangle {
     // fields must be explicitly typed, you cannot use type deduction here
 
     // member function, also known as a method
-    double CalculateArea() {
+    auto CalculateArea()->double {
         return Length * Width;
     }
 
     // member function that modifies the state of an object
-    void MakeItSquare(double SideLength) {
+    auto MakeItSquare(double SideLength)->void {
         Length = SideLength;
         Width = SideLength;
     }
@@ -279,7 +271,7 @@ But we haven't declared a common interface for `Rectangle` and `Circle`! Can we 
 - Navigate to the empty function `PrintShape`
 
 ```cpp
-void PrintShape(auto Shape) {
+auto PrintShape(auto Shape)->void {
     // Your code here
 }
 ```
@@ -486,10 +478,10 @@ This is because C++ has _value_ _semantics_ by default.
 Now that we know C++ makes a copy when creating something from another, unless specified otherwise (i.e. creating a reference). We should really change most of the parameter types in our function signature to references, unless it's something trivial like an `int` or `double`. Otherwise, a full copy will be made for every object we passed to the function, and it could lead to serious performance problems!
 
 ```cpp
-void F(std::vector<int> Things) {
+auto F(std::vector<int> Things)->void {
     // empty
 }
-void BetterF(std::vector<int>& Things) {
+auto BetterF(std::vector<int>& Things)->void {
     // empty
 }
 
@@ -521,7 +513,7 @@ Let's try our hand at references!
 - Navigate to the empty function `DoubleEachElement`, this function takes any container and doubles each element in the container.
 
 ```cpp
-void DoubleEachElement(/* ??? Container */) {
+auto DoubleEachElement(/* ??? Container */)->void {
     // your code here
 }
 ```
@@ -535,7 +527,7 @@ Print the results after `DoubleEachElement` calls, see if it matches your expect
 One problem with the basic form of references we've learned so far, is that they cannot bind to _values_ ([rvalue](https://en.cppreference.com/w/cpp/language/value_category#rvalue) in C++ terminology). The reason is obvious, values such as `123` or `3.14` do not have a memory address because they are not stored in memory by some variable. The same applies to function parameters, we cannot pass values to reference parameters.
 
 ```cpp
-void BetterF(std::vector<int>& Things) {
+auto BetterF(std::vector<int>& Things)->void {
     // empty
 }
 
@@ -555,7 +547,7 @@ This can be inconvenient in some cases. Ideally, we'd want something that behave
 </details>
 
 ```cpp
-void EvenBetterF(auto&& Things) {
+auto EvenBetterF(auto&& Things)->void {
     // empty
 }
 
@@ -590,7 +582,7 @@ This is because pointer arithmetic has array semantics, meaning if you have a po
 - Head to the empty function `PrintEachObject`, this function takes a pointer to the first object of an array of objects in memory, and the number of objects we have.
 
 ```cpp
-void PrintEachObject(auto* PointerToTheFirstObject, std::size_t NumberOfObjects) {
+auto PrintEachObject(auto* PointerToTheFirstObject, std::size_t NumberOfObjects)->void {
     // your code here
 }
 ```
